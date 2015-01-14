@@ -57,7 +57,7 @@ module Workflow
               where("#{table_name}.#{self.workflow_column.to_sym} = ?", state.to_s)
             end
 
-            eigenclass.send(:define_method, "without_#{state}_state") do
+            define_singleton_method("without_#{state}_state") do
               where("#{table_name}.#{self.workflow_column.to_sym} <> ?", state.to_s)
             end
           end
